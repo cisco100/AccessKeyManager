@@ -1,0 +1,28 @@
+ {% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+{% block content %}
+
+    <main  class="flex-grow container mx-auto py-8">
+        <h2 class="text-3xl font-bold text-center mb-8">Welcome</h2>
+        
+        <!-- Features Section -->
+        <div style="margin :0 auto;" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div style="margin :0 auto;" class="bg-white p-6 rounded-lg shadow-md">
+                <div class="text-blue-600 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-key"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2"><a href="{%url 'dashboard' %}">Manage Keys </h3>
+                <p class="text-gray-600">View and manage Keys.</p>
+            </div>
+          </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Access Key Manager. All rights reserved.</p>
+        </div>
+    </footer>
+ {%endblock content%}
