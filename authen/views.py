@@ -21,7 +21,7 @@ User = get_user_model()
 def send_verification_email(user, code):
     subject = 'Verify your email'
     message = f'Your verification code is: {code}'
-    from_email = settings.DEFAULT_FROM_EMAIL
+    from_email = settings.EMAIL_HOST_USER
     recipient_list = [user.email]
     send_mail(subject, message, from_email, recipient_list)
 
