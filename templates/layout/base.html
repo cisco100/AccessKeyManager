@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Access Key Management-{% endblock %}</title>
+    {%block css%}
+    {%endblock css%}
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-blue-600 p-4 text-white">
+        <div class="container mx-auto flex justify-between">
+            <a href="{% url 'dashboard' %}" class="font-bold">Access Key Manager</a>
+            <div>
+                {% if user.is_authenticated %}
+                   
+                <form method="post" action="{% url 'logout' %}" class="inline">
+                    {% csrf_token %}
+                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                Logout
+            </button>
+        </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="mr-4">Login</a>
+                    <a href="{% url 'signup' %}">Sign Up</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <main class="container mx-auto mt-8 p-4">
+
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <div class="message {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+        {% block content %}
+            {%block js%}
+            {%endblock js%}
+        {% endblock %}
+    </main>
+</body>
+</html>

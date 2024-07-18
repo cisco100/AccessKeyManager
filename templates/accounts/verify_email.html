@@ -1,0 +1,20 @@
+{% extends "layout/base.html" %}
+{% block title %}Verify Email{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded shadow">
+    <h2 class="text-2xl font-bold mb-6">Verify Your Email</h2>
+    <p class="mb-4">Please enter the 6-digit verification code sent to your email.</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="verification_code" class="block mb-2">Verification Code:</label>
+            <input type="text" name="verification_code" required class="w-full p-2 border rounded">
+        </div>
+        <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Verify</button>
+    </form>
+    {% if error %}
+        <p class="text-red-500 mt-4">{{ error }}</p>
+    {% endif %}
+</div>
+{% endblock %}

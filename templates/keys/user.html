@@ -1,0 +1,48 @@
+ {% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}User Dashboard{% endblock %}
+
+{% block content %}
+<div class="bg-white p-8 rounded shadow">
+    <h2 class="text-2xl font-bold mb-6">Welcome, {{ user.school_name }}</h2>
+    <h2 class="text-xl font-semibold mb-4">Your Access Keys</h2>
+
+    <div class="mb-6">
+        {% for key in keys %}
+        <div class="border-b py-2">
+            <p class="font-medium">Key: {{ key.key }}</p>
+            <p>Status: 
+                <span class="
+                    {% if key.status == 'active' %}text-green-600
+                    {% elif key.status == 'expired' %}text-red-600
+                    {% else %}text-yellow-600{% endif %}">
+                    {{ key.status|capfirst }}
+                </span>
+            </p>
+            <p>Procured in: {{ key.procurement_date|date:"F d, Y" }}</p>
+            <p>Expires: {{ key.expiry_date|date:"F d, Y" }}</p>
+        </div>
+        {% empty %}
+        <p>You don't have any access keys yet.</p>
+        {% endfor %}
+    </div>
+
+    <form method="post" action="{% url 'new_key' %}">
+        {% csrf_token %}
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            Request New Key
+        </button>
+    </form>
+
+    {% if messages %}
+    <div class="mt-4">
+        {% for message in messages %}
+        <div class="p-4 rounded {% if message.tags == 'success' %}bg-green-100 text-green-700{% elif message.tags == 'error' %}bg-red-100 text-red-700{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

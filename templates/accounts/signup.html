@@ -1,0 +1,50 @@
+{% extends "layout/base.html" %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded shadow">
+    <h2 class="text-2xl font-bold mb-6">Sign Up</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="{{ form.school_name.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">School Name</label>
+            {{ form.school_name }}
+            {% if form.school_name.errors %}
+            <p class="text-red-500 text-xs italic">{{ form.school_name.errors.0 }}</p>
+            {% endif %}
+        </div>
+        <div class="mb-4">
+            <label for="{{ form.email.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+            <p class="text-red-500 text-xs italic">{{ form.email.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        
+        <div class="mb-4">
+            <label for="{{ form.personnel_name.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">School Name</label>
+            {{ form.personnel_name }}
+            {% if form.personnel_name.errors %}
+            <p class="text-red-500 text-xs italic">{{ form.personnel_name.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <div class="mb-6">
+            <label for="{{ form.password1.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+            <p class="text-red-500 text-xs italic">{{ form.password1.errors.0 }}</p>
+            {% endif %}
+        </div>
+        <div class="mb-6">
+            <label for="{{ form.password2.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+            <p class="text-red-500 text-xs italic">{{ form.password2.errors.0 }}</p>
+            {% endif %}
+        </div>
+        <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Sign Up</button>
+    </form>
+</div>
+{% endblock %}
